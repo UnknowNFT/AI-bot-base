@@ -1,0 +1,35 @@
+name: Bot quotidien - paper trading
+
+on:
+  schedule:
+    - cron: "0 22 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  executer-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installer les librairies
+        run: pip install yfinance pandas scikit-learn numpy
+
+      - name: Lancer le bot
+        run: python bot_paper_trading.py
+
+      - name: Sauvegarder les résultats
+        run: |
+          git config user.name "Bot Trading"
+          git config user.email "bot@example.com"
+          git add etat_portefeuille.json historique_trades.csv
+          git diff --staged --quiet || git commit -m "Mise à jour automatique du $(date +%Y-%m-%d)"
+          git push
