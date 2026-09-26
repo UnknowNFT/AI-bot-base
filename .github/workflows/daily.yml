@@ -25,16 +25,8 @@ jobs:
 
       - name: Lancer le bot
         run: python bot_paper_trading.py
+
       - name: Sauvegarder les résultats
-        run: |
-          git config user.name "Bot Trading"
-          git config user.email "bot@example.com"
-          git fetch origin main
-          git reset --soft origin/main
-          git add etat_portefeuille.json historique_trades.csv
-          git diff --staged --quiet || git commit -m "Mise à jour automatique du $(date +%Y-%m-%d)"
-          git push origin HEAD:main
-       - name: Sauvegarder les résultats
         run: |
           git config user.name "Bot Trading"
           git config user.email "bot@example.com"
