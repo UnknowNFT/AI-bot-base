@@ -1,6 +1,6 @@
 {
   "capital": 26.805172176116187,
-  "position_ouverte": false,
-  "prix_entree": null,
-  "date_entree": "2026-10-26"
+  "position_ouverte": true,
+  "prix_entree": 3969.60009765625,
+  "date_entree": "2026-11-02"
 }
